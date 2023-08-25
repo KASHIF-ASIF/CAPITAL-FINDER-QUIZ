@@ -22,32 +22,38 @@
               <a class="nav-link active" aria-current="page" href="index.php">Home</a>
             </li>
             <?php
-if (isset($_SESSION['username'])) {
-    echo '<li class="nav-item">';
-    echo '<a class="nav-link" href="prequiz.php">Take a Quiz</a>';
-    echo '</li>';
-} else {
-    echo '<li class="nav-item">';
-    echo '<a class="nav-link" href="login.php">Take a Quiz</a>';
-    echo '</li>';
-}
-?>
+			if (session_status() === PHP_SESSION_NONE) {
+              session_start();
+            }
+            if (isset($_SESSION['username'])) {
+              echo '<li class="nav-item">';
+              echo '<a class="nav-link" href="prequiz.php">Take a Quiz</a>';
+              echo '</li>';
+            } else {
+              echo '<li class="nav-item">';
+              echo '<a class="nav-link" href="login.php">Take a Quiz</a>';
+              echo '</li>';
+            }
+            ?>
             <li class="nav-item">
               <a class="nav-link" href="leaderboard.php">Leaderboard</a>
             </li>
             <?php
-            session_start();
+            if (session_status() === PHP_SESSION_NONE) {
+              session_start();
+            }
+            
             if (isset($_SESSION['username'])) {
-                echo '<li class="nav-item">';
-                echo '<a class="nav-link">Welcome, ' . $_SESSION['username'] . '</a>';
-                echo '</li>';
-                echo '<li class="nav-item">';
-                echo '<a class="nav-link" href="logout.php">Logout</a>';
-                echo '</li>';
+              echo '<li class="nav-item">';
+              echo '<a class="nav-link">Welcome, ' . $_SESSION['username'] . '</a>';
+              echo '</li>';
+              echo '<li class="nav-item">';
+              echo '<a class="nav-link" href="logout.php">Logout</a>';
+              echo '</li>';
             } else {
-                echo '<li class="nav-item">';
-                echo '<a class="nav-link" href="login.php">Login</a>';
-                echo '</li>';
+              echo '<li class="nav-item">';
+              echo '<a class="nav-link" href="login.php">Login</a>';
+              echo '</li>';
             }
             ?>
           </ul>
