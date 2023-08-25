@@ -21,9 +21,17 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="index.php">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="prequiz.php">Take a Quiz</a>
-            </li>
+            <?php
+if (isset($_SESSION['username'])) {
+    echo '<li class="nav-item">';
+    echo '<a class="nav-link" href="prequiz.php">Take a Quiz</a>';
+    echo '</li>';
+} else {
+    echo '<li class="nav-item">';
+    echo '<a class="nav-link" href="login.php">Take a Quiz</a>';
+    echo '</li>';
+}
+?>
             <li class="nav-item">
               <a class="nav-link" href="leaderboard.php">Leaderboard</a>
             </li>
